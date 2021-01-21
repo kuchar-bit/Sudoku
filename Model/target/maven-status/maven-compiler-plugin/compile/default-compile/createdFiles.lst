@@ -1,0 +1,16 @@
+pl\comp\SudokuBoard.class
+pl\comp\Verify.class
+pl\comp\SudokuSolver.class
+pl\comp\MediumLevel.class
+pl\comp\SudokuBox.class
+pl\comp\Level.class
+pl\comp\SudokuColumn.class
+pl\comp\EasyLevel.class
+pl\comp\SudokuField.class
+pl\comp\BacktrackingSudokuSolver.class
+pl\comp\Dao.class
+pl\comp\SudokuBoardDaoFactory.class
+pl\comp\SudokuRow.class
+pl\comp\FixedList.class
+pl\comp\FileSudokuBoardDao.class
+pl\comp\HardLevel.class

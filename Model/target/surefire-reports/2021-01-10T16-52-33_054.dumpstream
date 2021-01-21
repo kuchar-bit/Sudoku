@@ -1,0 +1,4 @@
+# Created at 2021-01-10T16:52:33.454
+Boot Manifest-JAR contains absolute paths in classpath 'D:\WFTIMS\Semestr 3\Projekt_kompo\mka_wt_1015_05\Model\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+

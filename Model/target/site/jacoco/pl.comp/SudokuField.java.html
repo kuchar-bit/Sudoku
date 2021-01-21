@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SudokuField.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">00_ModelProject-2.0-SNAPSHOT</a> &gt; <a href="index.source.html" class="el_package">pl.comp</a> &gt; <span class="el_source">SudokuField.java</span></div><h1>SudokuField.java</h1><pre class="source lang-java linenums">package pl.comp;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
+import java.io.Serializable;
+
+public class SudokuField implements Cloneable, Comparable&lt;SudokuField&gt;, Serializable {
+    private int value;
+
+<span class="fc" id="L10">    public SudokuField(int value) {</span>
+<span class="fc" id="L11">        this.value = value;</span>
+<span class="fc" id="L12">    }</span>
+
+    public int getValue() {
+<span class="fc" id="L15">        return value;</span>
+    }
+
+    public void setValue(int value) {
+<span class="fc" id="L19">        this.value = value;</span>
+<span class="fc" id="L20">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L24">        return MoreObjects.toStringHelper(this)</span>
+<span class="fc" id="L25">                .add(&quot;value&quot;, getValue())</span>
+<span class="fc" id="L26">                .toString();</span>
+    }
+
+    @Override
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (this == o) {</span>
+<span class="fc" id="L32">            return true;</span>
+        }
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (o == null</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">                || getClass() != o.getClass()) {</span>
+<span class="fc" id="L36">            return false;</span>
+        }
+<span class="fc" id="L38">        SudokuField that = (SudokuField) o;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        return getValue() == that.getValue();</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L44">        return Objects.hashCode(getValue());</span>
+    }
+
+    @Override
+    public int compareTo(SudokuField o) {
+<span class="fc" id="L49">        return Integer.compare(this.getValue(), o.getValue());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

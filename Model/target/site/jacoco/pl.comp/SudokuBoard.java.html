@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SudokuBoard.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">00_ModelProject-2.0-SNAPSHOT</a> &gt; <a href="index.source.html" class="el_package">pl.comp</a> &gt; <span class="el_source">SudokuBoard.java</span></div><h1>SudokuBoard.java</h1><pre class="source lang-java linenums">package pl.comp;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
+import java.io.Serializable;
+import java.util.ArrayList;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class SudokuBoard implements Cloneable, Serializable {
+<span class="fc" id="L11">    final int size = 9;</span>
+<span class="fc" id="L12">    final int empty = 0;</span>
+
+<span class="fc" id="L14">    private final Log log = LogFactory.getLog(SudokuBoard.class);</span>
+
+<span class="fc" id="L16">    private final ArrayList&lt;FixedList&lt;SudokuField&gt;&gt; sudokuFields = new ArrayList&lt;&gt;(9);</span>
+
+    public int getSize() {
+<span class="fc" id="L19">        return size;</span>
+    }
+
+    public int getEmpty() {
+<span class="fc" id="L23">        return empty;</span>
+    }
+
+    public ArrayList&lt;FixedList&lt;SudokuField&gt;&gt; getSudokuFields() {
+<span class="fc" id="L27">        return sudokuFields;</span>
+    }
+
+    public SudokuSolver getSudokuSolver() {
+<span class="fc" id="L31">        return sudokuSolver;</span>
+    }
+
+    private final SudokuSolver sudokuSolver;
+
+    public boolean isCheckTrue() {
+<span class="fc" id="L37">        return checkBoard();</span>
+    }
+
+<span class="fc" id="L40">    SudokuBoard(SudokuSolver sudokuSolver) {</span>
+<span class="fc" id="L41">        this.sudokuSolver = sudokuSolver;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="fc" id="L43">            sudokuFields.add(new FixedList&lt;&gt;(9));</span>
+        }
+
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">            for (int j = 0; j &lt; size; j++) {</span>
+<span class="fc" id="L48">                sudokuFields.get(i).add(new SudokuField(empty));</span>
+            }
+        }
+<span class="fc" id="L51">    }</span>
+
+    public int get(int row, int column) {
+<span class="fc" id="L54">        return sudokuFields.get(row).get(column).getValue();</span>
+    }
+
+    public void set(int row, int column, int value) {
+<span class="fc" id="L58">        sudokuFields.get(row).get(column).setValue(value);</span>
+<span class="fc" id="L59">    }</span>
+
+    public SudokuColumn getColumn(int column) {
+<span class="fc" id="L62">        FixedList&lt;SudokuField&gt; columnField = new FixedList&lt;&gt;(9);</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="fc" id="L64">            columnField.add(new SudokuField(empty));</span>
+<span class="fc" id="L65">            columnField.set(i, sudokuFields.get(i).get(column));</span>
+        }
+<span class="fc" id="L67">        return new SudokuColumn(columnField);</span>
+    }
+
+    public SudokuRow getRow(int row) {
+<span class="fc" id="L71">        FixedList&lt;SudokuField&gt; rowField = new FixedList&lt;&gt;(9);</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="fc" id="L73">            rowField.add(new SudokuField(empty));</span>
+<span class="fc" id="L74">            rowField.set(i, sudokuFields.get(row).get(i));</span>
+        }
+<span class="fc" id="L76">        return new SudokuRow(rowField);</span>
+    }
+
+    public SudokuBox getBox(int row, int column) {
+<span class="fc" id="L80">        int r = row - row % 3;</span>
+<span class="fc" id="L81">        int c = column - column % 3;</span>
+<span class="fc" id="L82">        FixedList&lt;SudokuField&gt; boxField = new FixedList&lt;&gt;(9);</span>
+<span class="fc" id="L83">        int index = 0;</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (int i = r; i &lt; r + 3; i++) {</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">            for (int j = c; j &lt; c + 3; j++) {</span>
+<span class="fc" id="L86">                boxField.add(new SudokuField(empty));</span>
+<span class="fc" id="L87">                boxField.add(index++, sudokuFields.get(i).get(j));</span>
+            }
+        }
+<span class="fc" id="L90">        return new SudokuBox(boxField);</span>
+    }
+
+    public void print() {
+
+<span class="fc" id="L95">        StringBuilder value = new StringBuilder();</span>
+<span class="fc" id="L96">        value.append(&quot;\n&quot;);</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">            for (int j = 0; j &lt; size; j++) {</span>
+<span class="fc" id="L99">                value.append(sudokuFields.get(i).get(j).getValue()).append(&quot; &quot;);</span>
+            }
+<span class="fc" id="L101">            value.append(&quot;\n&quot;);</span>
+        }
+<span class="fc" id="L103">        value.append(&quot;\n&quot;);</span>
+<span class="fc" id="L104">        log.info(value.toString());</span>
+<span class="fc" id="L105">    }</span>
+
+    public void solveGame() {
+<span class="fc" id="L108">        sudokuSolver.solve(this);</span>
+<span class="fc" id="L109">        checkBoard();</span>
+<span class="fc" id="L110">    }</span>
+
+    private boolean checkBoard() {
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        for (int row = 0; row &lt; size; row++) {</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">            for (int column = 0; column &lt; size; column++) {</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">                if (!getColumn(column).verify()</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">                        || !getRow(row).verify()</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">                        || !getBox(row, column).verify()) {</span>
+<span class="fc" id="L118">                    return false;</span>
+                }
+            }
+        }
+<span class="fc" id="L122">        return true;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L127">        return MoreObjects.toStringHelper(this)</span>
+<span class="fc" id="L128">                .add(&quot;size&quot;, size)</span>
+<span class="fc" id="L129">                .add(&quot;empty&quot;, empty)</span>
+<span class="fc" id="L130">                .add(&quot;sudokuFields&quot;, sudokuFields)</span>
+<span class="fc" id="L131">                .add(&quot;sudokuSolver&quot;, sudokuSolver)</span>
+<span class="fc" id="L132">                .toString();</span>
+    }
+
+    @Override
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L137" title="All 2 branches covered.">        if (this == o) {</span>
+<span class="fc" id="L138">            return true;</span>
+        }
+<span class="fc bfc" id="L140" title="All 2 branches covered.">        if (o == null</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">                || getClass() != o.getClass()) {</span>
+<span class="fc" id="L142">            return false;</span>
+        }
+<span class="fc" id="L144">        SudokuBoard that = (SudokuBoard) o;</span>
+<span class="fc" id="L145">        return Objects.equal(sudokuFields, that.sudokuFields);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L150">        return Objects.hashCode(size, empty, sudokuFields);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

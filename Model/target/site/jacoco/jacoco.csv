@@ -1,0 +1,16 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+00_ModelProject-2.0-SNAPSHOT,pl.comp,MediumLevel,0,37,0,8,0,6,0,6,0,2
+00_ModelProject-2.0-SNAPSHOT,pl.comp,Verify,0,85,0,12,0,24,0,13,0,7
+00_ModelProject-2.0-SNAPSHOT,pl.comp,FixedList,0,38,0,6,0,12,0,7,0,4
+00_ModelProject-2.0-SNAPSHOT,pl.comp,SudokuField,0,63,0,8,0,18,0,11,0,7
+00_ModelProject-2.0-SNAPSHOT,pl.comp,SudokuRow,0,4,0,0,0,2,0,1,0,1
+00_ModelProject-2.0-SNAPSHOT,pl.comp,SudokuColumn,0,4,0,0,0,2,0,1,0,1
+00_ModelProject-2.0-SNAPSHOT,pl.comp,SudokuBoardDaoFactory,0,8,0,0,0,2,0,2,0,2
+00_ModelProject-2.0-SNAPSHOT,pl.comp,HardLevel,0,39,0,8,0,6,0,6,0,2
+00_ModelProject-2.0-SNAPSHOT,pl.comp,FileSudokuBoardDaoExceptions,0,9,0,0,0,4,0,2,0,2
+00_ModelProject-2.0-SNAPSHOT,pl.comp,SudokuBox,0,4,0,0,0,2,0,1,0,1
+00_ModelProject-2.0-SNAPSHOT,pl.comp,BacktrackingSudokuSolver,0,126,0,22,0,22,0,13,0,2
+00_ModelProject-2.0-SNAPSHOT,pl.comp,Level,0,3,0,0,0,1,0,1,0,1
+00_ModelProject-2.0-SNAPSHOT,pl.comp,EasyLevel,0,37,0,8,0,6,0,6,0,2
+00_ModelProject-2.0-SNAPSHOT,pl.comp,FileSudokuBoardDao,0,54,0,0,0,18,0,4,0,4
+00_ModelProject-2.0-SNAPSHOT,pl.comp,SudokuBoard,0,382,0,34,0,72,0,34,0,17
